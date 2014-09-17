@@ -11,11 +11,11 @@ $this->headTitle($title);
 
 		<div class="jumbotron text-primary">
 			<ul class="nav nav-pills">
-                <li><a class="text-primary" href="<?php echo $this->url('blogger-author', array('action'=>'index'));?>">View Authors</a></li>
+                <li class="active"><a class="text-primary" href="<?php echo $this->url('blogger-author', array('action'=>'index'));?>">View Authors</a></li>
                 <li><a class="text-primary" href="<?php echo $this->url('blogger-author', array('action'=>'add'));?>">Add Authors</a></li>
                 <li><a class="text-primary" href="<?php echo $this->url('blogger', array('action'=>'view'));?>">View Post</a></li>
                 <li><a class="text-primary" href="<?php echo $this->url('blogger', array('action'=>'add'));?>">Add Post</a></li>
-                <li class="active"><a class="text-primary" href="<?php echo $this->url('blogger', array('action'=>'index'));?>">Indexer Post</a></li>
+                <li class="text-primary"><a class="text-primary" href="<?php echo $this->url('blogger', array('action'=>'index'));?>">Indexer Post</a></li>
           </ul>   
             <div class="normal-text"><center>
             
