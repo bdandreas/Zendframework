@@ -1,0 +1,52 @@
+
+<!-- Header -->
+<header>
+	<br> <br> <br> <br>
+	<div class="container">
+	
+	
+		<div class="jumbotron text-primary">
+           <ul class="nav nav-pills">
+                <li><a class="text-primary" href="<?php echo $this->url('blogger-author', array('action'=>'index'));?>">View Authors</a></li>
+                <li><a class="text-primary" href="<?php echo $this->url('blogger-author', array('action'=>'add'));?>">Add Authors</a></li>
+                <li><a class="text-primary" href="<?php echo $this->url('blogger', array('action'=>'view'));?>">View Post</a></li>
+                <li><a class="text-primary" href="<?php echo $this->url('blogger', array('action'=>'add'));?>">Add Post</a></li>
+                <li class="active"><a class="text-primary" href="<?php echo $this->url('blogger', array('action'=>'index'));?>">Indexer Post</a></li>
+          </ul>      
+ 			<div class="normal-text">
+                <?php if (isset($blogposts)) : ?>
+                <div class="table-responsive">
+                
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Message</th>
+                    </tr>
+                    </thead>
+                <?php foreach($blogposts as $post): ?>
+                    <tbody>
+                    <tr>
+                        <td><?php echo $post->getId(); ?></td>
+                        <td><?php echo $post->getTitle(); ?></td>
+                        <td><?php echo $post->getMessage(); ?></td>
+                        <td>
+                            <a class="text-primary" href="<?php echo $this->url('blogger', array('action'=>'edit', 'id' => $post->getId()));?>">Edit</a> |
+                            <a class="text-primary" href="<?php echo $this->url('blogger', array('action'=>'delete', 'id' => $post->getId()));?>">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                <?php endforeach; ?>
+                </table>
+                <?php endif; ?>
+                </div>
+                <?php echo $this->paginationControl($view->paginator, 'Sliding',  array('/scripts/pagination.phtml', 'blogger'), array('route' => 'blogger', 'action'=>'') ); ?>
+               
+            </div>
+        </div>
+
+ 
+           </div>
+	</div>
+</header>       

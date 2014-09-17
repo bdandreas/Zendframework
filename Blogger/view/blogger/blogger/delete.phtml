@@ -1,0 +1,36 @@
+
+<!-- Header -->
+<header>
+	<br> <br> <br> <br>
+	<div class="container">
+	
+<?php
+
+$title = 'Delete Blog Post';
+$this->headTitle($title);
+?>
+
+		<div class="jumbotron text-primary">
+			<ul class="nav nav-pills">
+                <li><a class="text-primary" href="<?php echo $this->url('blogger-author', array('action'=>'index'));?>">View Authors</a></li>
+                <li><a class="text-primary" href="<?php echo $this->url('blogger-author', array('action'=>'add'));?>">Add Authors</a></li>
+                <li><a class="text-primary" href="<?php echo $this->url('blogger', array('action'=>'view'));?>">View Post</a></li>
+                <li><a class="text-primary" href="<?php echo $this->url('blogger', array('action'=>'add'));?>">Add Post</a></li>
+                <li class="active"><a class="text-primary" href="<?php echo $this->url('blogger', array('action'=>'index'));?>">Indexer Post</a></li>
+          </ul>   
+            <div class="normal-text"><center>
+            
+<h2><?php echo $this->escapeHtml($title); ?></h2>
+Are you sure you want to delete this blog post:  <?php echo $blogposts->getTitle(); ?>? <br/>
+<form method="post">
+  <input class="btn btn-success" type="submit" value="Delete">
+</form>
+
+
+</center></div>
+		</div>
+
+
+           </div>
+	</div>
+</header>       		
