@@ -64,7 +64,7 @@ class KowabungaForm extends Form{
 			'value' => '0',
 			'required' => 'required',	
 			'min' => '0',
-			'max' => '10',
+			'max' => '100000',
 			'step' => '1',
 			//'pattern'  => '^[0-9]',
             	/*'class' => 'form-control input-sm',*/
