@@ -18,15 +18,13 @@ use Zend\Db\Adapter\Adapter;
 
 class IndexController extends AbstractActionController
 {
-	private $user;
-	
+    private $user;
+
     public function indexAction()
     {
-    	
+
         //return new ViewModel();
     }
-    
- 	
-    
+
 
 }

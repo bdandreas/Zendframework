@@ -20,21 +20,15 @@ class Module
 {
     public function onBootstrap(MvcEvent $e)
     {
-    	$sm = $e->getApplication()->getServiceManager();
-    	
-        $eventManager        = $e->getApplication()->getEventManager();
+        $sm = $e->getApplication()->getServiceManager();
+        $eventManager = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
-        
+
         // Load translator
         $translator = $sm->get('translator');
         $translator->setLocale('nl_NL');
-        
         FacebookSession::setDefaultApplication('542469915899430', '569ba871001ac6a159561b612e3e6c57');
-        
-        
-		
-
     }
 
     public function getConfig()
@@ -45,40 +39,12 @@ class Module
     public function getAutoloaderConfig()
     {
         return array(
-        	
-	       'Zend\Loader\StandardAutoloader' => array(
+
+            'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),
             ),
         );
     }
-    
-    
-    //
-    // Gateway for mysql 
-    //
-    /*
-     * @contact
-     * 
-     
-    public function getServiceConfig()
-     {
-         return array(
-             'factories' => array(
-                 'Application\Model\ContactTable' =>  function($sm) {
-                     $tableGateway = $sm->get('ContactTableGateway');
-                     $table = new ContactTable($tableGateway);
-                     return $table;
-                 },
-                 'ContactTableGateway' => function ($sm) {
-                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                     $resultSetPrototype = new ResultSet();
-                     $resultSetPrototype->setArrayObjectPrototype(new Contact());
-                     return new TableGateway('tbl_contact', $dbAdapter, null, $resultSetPrototype);
-                 },
-             ),
-         );
-     }
-    */
 }

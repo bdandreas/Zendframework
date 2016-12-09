@@ -1,5 +1,6 @@
 <?php
 namespace Blogger\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -16,77 +17,76 @@ use Zend\Form\Annotation;
  * @Annotation\Name("user")
  * @Annotation\Hydrator("Zend\Stdlib\Hydrator\ClassMethods")
  */
-
 class BloggerPost
 {
-  /** 
-   * Primary Identifier
-   * @ORM\Id
-   * @ORM\Column(type="integer")
-   * @ORM\GeneratedValue(strategy="AUTO")
-   * @var integer
-   * @access protected
-   */
-    protected $id;
-     
-    
     /**
-     * @ORM\Column(length=11)  
-     * @ORM\Column(type="integer") 
+     * Primary Identifier
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var integer
+     * @access protected
+     */
+    protected $id;
+
+
+    /**
+     * @ORM\Column(length=11)
+     * @ORM\Column(type="integer")
      */
     protected $userid;
-    
-    
-  /**
-   * Title of our Blog Post
-   *
-   * @ORM\Column(type="string")
-   * @var string
-   * @access protected
-   */
-    protected $title;
-     
-    
-  /**
-   * Textual content of our Blog Post
-   *
-   * @ORM\Column(type="text")
-   * @var string
-   * @access protected
-   */
-    protected $message;
-    
+
+
     /**
-     * @ORM\Column(length=11)  
-     * @ORM\Column(type="integer") 
+     * Title of our Blog Post
+     *
+     * @ORM\Column(type="string")
+     * @var string
+     * @access protected
+     */
+    protected $title;
+
+
+    /**
+     * Textual content of our Blog Post
+     *
+     * @ORM\Column(type="text")
+     * @var string
+     * @access protected
+     */
+    protected $message;
+
+    /**
+     * @ORM\Column(length=11)
+     * @ORM\Column(type="integer")
      */
     protected $control;
-     
-   /** 
-    * @ORM\Column(type="datetime")
-    */
-    protected $created;
-    
-   /**
-   	* Sets the Identifier
-   	*
-   	* @param int $id
-   	* @access public
-   	* @return Post
-   	*/
-  	public function setId($id)
-  	{
-    	$this->id = $id;
-    	return $this;
-  	}
 
-  /**
-    * Returns the Identifier
-    *
-    * @access public
-    * @return int
-    */  
-	public function getId()
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $created;
+
+    /**
+     * Sets the Identifier
+     *
+     * @param int $id
+     * @access public
+     * @return Post
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * Returns the Identifier
+     *
+     * @access public
+     * @return int
+     */
+    public function getId()
     {
         return $this->id;
     }
@@ -100,7 +100,8 @@ class BloggerPost
     {
         $this->userid = $userid;
     }
-	public function getTitle()
+
+    public function getTitle()
     {
         return $this->title;
     }
@@ -109,7 +110,8 @@ class BloggerPost
     {
         $this->title = $title;
     }
-	public function getMessage()
+
+    public function getMessage()
     {
         return $this->message;
     }
@@ -118,7 +120,8 @@ class BloggerPost
     {
         $this->message = $message;
     }
-	public function getControl()
+
+    public function getControl()
     {
         return $this->control;
     }
@@ -127,15 +130,16 @@ class BloggerPost
     {
         $this->control = $control;
     }
+
     public function setCreated($created)
     {
-        $this->created =  $created;
+        $this->created = $created;
     }
 
     public function getCreated()
     {
         return $this->created;
     }
-    
-	
+
+
 }

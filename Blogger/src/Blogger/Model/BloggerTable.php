@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Blogger\Model;
 use Zend\Db\ResultSet\ResultSet;
@@ -7,37 +7,37 @@ use Zend\Db\Sql\Select;
 use Zend\Paginator\Adapter\DbSelect;
 use Zend\Paginator\Paginator;
 
- class BloggerTable
- {
-     protected $tableGateway;
+class BloggerTable
+{
+    protected $tableGateway;
 
-     public function __construct(TableGateway $tableGateway)
-     {
-         $this->tableGateway = $tableGateway;
-     }
+    public function __construct(TableGateway $tableGateway)
+    {
+        $this->tableGateway = $tableGateway;
+    }
 
-    
-     public function fetchAll($paginated=false)
-     {
-        if($paginated) {
+
+    public function fetchAll($paginated = false)
+    {
+        if ($paginated) {
             // create a new Select object for the table album
             $select = new Select('blogger_post');
             // Join Blogger_users too
-			
+
             $select->join(
-            		array('u' => 'blogger_users'),     // join table with alias
-    					  'blogger_post.userid = u.id ', 
-            			   Select::SQL_STAR , 
-    					   Select::JOIN_LEFT
-            		)->order('blogger_post.created');
-            		
-            	  
+                array('u' => 'blogger_users'),     // join table with alias
+                'blogger_post.userid = u.id ',
+                Select::SQL_STAR,
+                Select::JOIN_LEFT
+            )->order('blogger_post.created');
+
+
             // create a new result set based on the Album entity
             $resultSetPrototype = new ResultSet();
             $resultSetPrototype->setArrayObjectPrototype(new BloggerModel());
             // create a new pagination adapter object
             $paginatorAdapter = new DbSelect(
-                // our configured select object
+            // our configured select object
                 $select,
                 // the adapter to run it against
                 $this->tableGateway->getAdapter(),
@@ -49,12 +49,12 @@ use Zend\Paginator\Paginator;
         }
         $resultSet = $this->tableGateway->select();
         return $resultSet;
-     }
-    
-     public function deleteContact($id)
-     {
-         $this->tableGateway->delete(array('id' => (int) $id));
-     }
- }
- 
- ?>
+    }
+
+    public function deleteContact($id)
+    {
+        $this->tableGateway->delete(array('id' => (int)$id));
+    }
+}
+
+?>

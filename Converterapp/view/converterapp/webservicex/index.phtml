@@ -1,134 +1,123 @@
-
-<!-- Header -->
 <header>
-	<br> <br> <br> <br>
-	<div class="container">
-	
-	<?php
-/*
- *
- *
- *
- */
+    <br> <br> <br> <br>
+    <div class="container">
 
-// Set classes we need in the front view.
-$country = new Converterapp\Form\WebservicexForm;
+        <?php
+        // Set classes we need in the front view.
+        $country = new Converterapp\Form\WebservicexForm;
 
 
-if(isset($this->Values)){
+        if (isset($this->Values)) {
 
-	$from_currency =  trim($this->Values[value][fromcurrency]);
-	$tocurrency =  trim($this->Values[value][tocurrency]);
-	$rate = trim($this->Values[value][rate]);
-	$country_array = $country->getCountryCodes();
-		
-}
+            $from_currency = trim($this->Values[value][fromcurrency]);
+            $tocurrency = trim($this->Values[value][tocurrency]);
+            $rate = trim($this->Values[value][rate]);
+            $country_array = $country->getCountryCodes();
 
-// Prepare the form already
-$form = $this->form;
-$form->setAttribute('action',$this->url('webservicex'));
-$form->setAttribute('method', 'post');
-$form->setAttribute('class', 'form-horizontal');
-$form->setAttribute('role', 'form');
-$form->prepare();
+        }
 
-?>
+        // Prepare the form already
+        $form = $this->form;
+        $form->setAttribute('action', $this->url('webservicex'));
+        $form->setAttribute('method', 'post');
+        $form->setAttribute('class', 'form-horizontal');
+        $form->setAttribute('role', 'form');
+        $form->prepare();
 
-<div class="jumbotron text-primary">
-	<h2>
-	<?php echo $this->translate('Convertor') ?>
-	</h2>
-	<div class="normal-text">
-		<p>
-		<?php echo $this->translate('Choose which provider') ?>
-		</p>
-		<br>
-		<ul class="nav nav-pills">
-			<li><a class="text-primary"
-				href="<?php echo $this->url("converter") ?>">Home</a></li>
-			<li class="active"><a href="<?php echo $this->url("webservicex") ?>">Webservicex</a>
-			</li>
-			<li><a class="text-primary"
-				href="<?php echo $this->url("kowabunga") ?>">Kowabunga</a></li>
-		</ul>
+        ?>
 
-
+        <div class="jumbotron text-primary">
+            <h2>
+                <?php echo $this->translate('Convertor') ?>
+            </h2>
+            <div class="normal-text">
+                <p>
+                    <?php echo $this->translate('Choose which provider') ?>
+                </p>
+                <br>
+                <ul class="nav nav-pills">
+                    <li><a class="text-primary"
+                           href="<?php echo $this->url("converter") ?>">Home</a></li>
+                    <li class="active"><a href="<?php echo $this->url("webservicex") ?>">Webservicex</a>
+                    </li>
+                    <li><a class="text-primary"
+                           href="<?php echo $this->url("kowabunga") ?>">Kowabunga</a></li>
+                </ul>
 
 
-		<?php
-		/*
-		 * Dump here the selection and calculations.
-		 *
-		 *
-		 */
+                <?php
+                /*
+                 * Dump here the selection and calculations.
+                 *
+                 *
+                 */
 
-		if(isset($this->Values)){
+                if (isset($this->Values)) {
 
-			$from = $country_array[$from_currency];
-			$to = $country_array[$tocurrency];
+                    $from = $country_array[$from_currency];
+                    $to = $country_array[$tocurrency];
 
-			echo '<div class="list-group">
+                    echo '<div class="list-group">
 	  	<a href="#" class="list-group-item active">
-	    	<h4 class="list-group-item-heading">'.$this->translate('Converting').' : '.$from.'  -> '.$to.'</h4>
+	    	<h4 class="list-group-item-heading">' . $this->translate('Converting') . ' : ' . $from . '  -> ' . $to . '</h4>
 	        
 	  </a>
-	  <p class="list-group-item-text">'.$this->translate('Rate').' : '.$rate.'</p>
+	  <p class="list-group-item-text">' . $this->translate('Rate') . ' : ' . $rate . '</p>
 	</div>';
 
 
-		}
-		?>
+                }
+                ?>
 
 
+            </div>
+            <?php echo $this->form()->openTag($form); ?>
+            <?php foreach ($form as $element) : ?>
 
-	</div>
-	<?php     echo $this->form()->openTag($form); ?>
-	<?php foreach ($form as $element) : ?>
+                <div style="width: 530px;"
+                     class="form-group <?php if ($this->formElementErrors($element)) echo "has-error" ?>">
+                    <?php
+                    if ('submit' != $element->getAttribute('type')) { ?>
+                    <label style="width: 200px; text-align: right;"
+                           class="col-sm-2 control-label"><?php echo $element->getLabel() ?> </label>
+                    <div class="col-sm-10" style="width: 330px;">
 
-	<div style="width: 530px;"
-		class="form-group <?php if ($this->formElementErrors($element)) echo "has-error" ?>">
-		<?php
-		if ('submit' != $element->getAttribute('type')) { ?>
-		<label style="width: 200px; text-align: right;"
-			class="col-sm-2 control-label"><?php echo $element->getLabel() ?> </label>
-		<div class="col-sm-10" style="width: 330px;">
+                        <?php
+                        $element->setAttribute('class', 'form-control')
+                            ->setAttribute('placeholder', $element->getLabel());
+                        } else {
+                            $element->setAttribute('class', 'btn btn-success');
+                            // Somehow it remaines value add so we set it manual here.
+                            $element->setAttribute('value', 'Convert');
+                        }
+                        if ($element instanceof Zend\Form\Element\Captcha) {
+                            echo $this->formCaptcha($element);
+                        } else {
+                            echo $this->formElement($element);
+                        }
+                        if ($this->formElementErrors($element)) : ?>
+                            <?php
+                            echo $this->formElementErrors()
+                                ->setMessageOpenFormat('<p style="font-size:12px;" class="help-block"><b>')
+                                ->setMessageSeparatorString('</b></p><p class="help-block">')
+                                ->setMessageCloseString('</p>')
+                                ->render($element);
+                            ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
 
-		<?php
-		$element->setAttribute('class', 'form-control')
-		->setAttribute('placeholder', $element->getLabel());
-		} else {
-			$element->setAttribute('class', 'btn btn-success');
-			// Somehow it remaines value add so we set it manual here.
-			$element->setAttribute('value', 'Convert');
-		}
-		if ($element instanceof Zend\Form\Element\Captcha) {
-			echo $this->formCaptcha($element);
-		} else {
-			echo $this->formElement($element);
-		}
-		if ($this->formElementErrors($element)) : ?>
-		<?php
-		echo $this->formElementErrors()
-		->setMessageOpenFormat('<p style="font-size:12px;" class="help-block"><b>')
-		->setMessageSeparatorString('</b></p><p class="help-block">')
-		->setMessageCloseString('</p>')
-		->render($element);
-		?>
-		<?php endif; ?>
-		</div>
-	</div>
+                <?php
+            endforeach; ?>
 
-	<?php
-	endforeach;?>
+            <?php if ($this->redirect): ?>
+                <input type="hidden" name="redirect"
+                       value="<?php echo $this->escapeHtml($this->redirect) ?>"/>
+            <?php endif ?>
+            <?php echo $this->form()->closeTag() ?>
 
-	<?php if ($this->redirect): ?>
-	<input type="hidden" name="redirect"
-		value="<?php echo $this->escapeHtml($this->redirect) ?>" />
-		<?php endif ?>
-		<?php echo $this->form()->closeTag() ?>
+        </div>
 
-</div>
-
-           </div>
-	</div>
+    </div>
+    </div>
 </header>    

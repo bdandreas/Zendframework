@@ -16,73 +16,70 @@ use Zend\InputFilter\InputFilterInterface;
 
 class Webservicex implements InputFilterAwareInterface
 {
-    
-     public $fromcurrency;
-     public $tocurrency;
-     protected $inputFilter;                       // <-- Add this variable
 
-     public function exchangeArray($data)
-     {
-         $this->fromcurrency     = (isset($data['fromcurrency']))     ? $data['fromcurrency']     : null;
-         $this->tocurrency = (isset($data['tocurrency'])) ? $data['tocurrency'] : null;
-        
-     }
+    public $fromcurrency;
+    public $tocurrency;
+    protected $inputFilter;                       // <-- Add this variable
 
-     // Add content to these methods:
-     public function setInputFilter(InputFilterInterface $inputFilter)
-     {
-        //throw new (\Exception("Not used");
-     }
+    public function exchangeArray($data)
+    {
+        $this->fromcurrency = (isset($data['fromcurrency'])) ? $data['fromcurrency'] : null;
+        $this->tocurrency = (isset($data['tocurrency'])) ? $data['tocurrency'] : null;
 
-     public function getInputFilter()
-     {
-         if (!$this->inputFilter) {
-             $inputFilter = new InputFilter();
+    }
+
+    // Add content to these methods:
+    public function setInputFilter(InputFilterInterface $inputFilter)
+    {
+    }
+
+    public function getInputFilter()
+    {
+        if (!$this->inputFilter) {
+            $inputFilter = new InputFilter();
 
             $inputFilter->add(array(
-                 'name'     => 'fromcurrency',
-                 'required' => true,
-                 'filters'  => array(
-                     array('name' => 'StripTags'),
-                     array('name' => 'StringTrim'),
-                 ),
-                 'validators' => array(
-                     array(
-                         'name'    => 'StringLength',
-                         'options' => array(
-                             'encoding' => 'UTF-8',
-                             'min'      => 1,
-                             'max'      => 100,
-                         ),
-                     ),
-                 ),
-             ));
+                'name' => 'fromcurrency',
+                'required' => true,
+                'filters' => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min' => 1,
+                            'max' => 100,
+                        ),
+                    ),
+                ),
+            ));
 
-             $inputFilter->add(array(
-                 'name'     => 'tocurrency',
-                 'required' => true,
-                 'filters'  => array(
-                     array('name' => 'StripTags'),
-                     array('name' => 'StringTrim'),
-                 ),
-                 'validators' => array(
-                     array(
-                         'name'    => 'StringLength',
-                         'options' => array(
-                             'encoding' => 'UTF-8',
-                             'min'      => 1,
-                             'max'      => 100,
-                         ),
-                     ),
-                 ),
-             ));
+            $inputFilter->add(array(
+                'name' => 'tocurrency',
+                'required' => true,
+                'filters' => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min' => 1,
+                            'max' => 100,
+                        ),
+                    ),
+                ),
+            ));
 
-                       
-                       
-            
-             $this->inputFilter = $inputFilter;
-         }
 
-         return $this->inputFilter;
-     }
- }
+            $this->inputFilter = $inputFilter;
+        }
+
+        return $this->inputFilter;
+    }
+}

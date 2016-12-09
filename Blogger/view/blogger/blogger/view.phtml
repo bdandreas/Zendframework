@@ -1,66 +1,73 @@
-
 <!-- Header -->
 <header>
-	<br> <br> <br> <br>
-	<div class="container">
-           
-            	<div class="jumbotron text-primary">
-            	 <ul class="nav nav-pills">
-                <li><a class="text-primary" href="<?php echo $this->url('blogger-author', array('action'=>'index'));?>">View Authors</a></li>
-                <li><a class="text-primary" href="<?php echo $this->url('blogger-author', array('action'=>'add'));?>">Add Authors</a></li>
-                <li class="active" ><a class="text-primary" href="<?php echo $this->url('blogger', array('action'=>'view'));?>">View Post</a></li>
-                <li><a class="text-primary" href="<?php echo $this->url('blogger', array('action'=>'add'));?>">Add Post</a></li>
-                <li><a class="text-primary" href="<?php echo $this->url('blogger', array('action'=>'index'));?>">Indexer Post</a></li>
-          		</ul>  
-          
-            	<?php //echo $this->paginationControl($view->paginator, 'Sliding',  array('/scripts/paginationviewtop.phtml', 'blogger'), array('route' => 'blogger')); ?>
-                 <div class="normal-text">            
-                <a class="text-primary" href="<?php echo $this->url('blogger', array('action'=>'view'));?>">Latest Blogs</a>
+    <br> <br> <br> <br>
+    <div class="container">
+
+        <div class="jumbotron text-primary">
+            <ul class="nav nav-pills">
+                <li><a class="text-primary"
+                       href="<?php echo $this->url('blogger-author', array('action' => 'index')); ?>">View Authors</a>
+                </li>
+                <li><a class="text-primary"
+                       href="<?php echo $this->url('blogger-author', array('action' => 'add')); ?>">Add Authors</a></li>
+                <li class="active"><a class="text-primary"
+                                      href="<?php echo $this->url('blogger', array('action' => 'view')); ?>">View
+                        Post</a></li>
+                <li><a class="text-primary" href="<?php echo $this->url('blogger', array('action' => 'add')); ?>">Add
+                        Post</a></li>
+                <li><a class="text-primary" href="<?php echo $this->url('blogger', array('action' => 'index')); ?>">Indexer
+                        Post</a></li>
+            </ul>
+
+            <?php //echo $this->paginationControl($view->paginator, 'Sliding',  array('/scripts/paginationviewtop.phtml', 'blogger'), array('route' => 'blogger')); ?>
+            <div class="normal-text">
+                <a class="text-primary" href="<?php echo $this->url('blogger', array('action' => 'view')); ?>">Latest
+                    Blogs</a>
 
                 <?php //print_r($blogusers->GetBloggerUser());?>
-                
-                <?php foreach($view->paginator as $post): ?>
-               
-                <?php 
-                $postdate = date_format($post->getCreated(),'Y F d');
-                $posttime = date_format($post->getCreated(),'H:i:s');
-                // Get User detail registered in view back here
-                // $getdetails is array Username Email keys
-                $getdetails = $blogusers->GetBloggerUser($post->getUserid(),$post->getControl());
-                if(!$getdetails['Username']){
-                	$getdetails['Username'] = "No Author";
-                }
-                
-                
-                //Formail details to mail href
-                if ($getdetails['Email']){
-                	$detail_user = '<a class="text-primary" href="mailto:'.$getdetails['Email'].'?SUBJECT='.$post->getTitle().'">'.$getdetails['Username'].'</a>';
-                }else{
-                	$detail_user = $getdetails['Username'];
-                }
-                
-                
-                ?>
-                
-                   <div class="clearfix"></div>
-                 <div class="blog-post">
-            <h3 class="blog-post-title"><small><?php echo $post->getTitle(); ?></small></h3>
-            <p1 class="blog-post-meta text-primary-small"><?php echo $postdate; ?> by <?php echo $detail_user;  ?> <?php echo $posttime; ?></p1>
-            <div class="blog-post-message" ><?php echo $post->getMessage(); ?></div>
-            </div><!-- /.blog-post -->
-          
-          
+
+                <?php foreach ($view->paginator as $post): ?>
+
+                    <?php
+                    $postdate = date_format($post->getCreated(), 'Y F d');
+                    $posttime = date_format($post->getCreated(), 'H:i:s');
+                    // Get User detail registered in view back here
+                    // $getdetails is array Username Email keys
+                    $getdetails = $blogusers->GetBloggerUser($post->getUserid(), $post->getControl());
+                    if (!$getdetails['Username']) {
+                        $getdetails['Username'] = "No Author";
+                    }
+
+
+                    //Formail details to mail href
+                    if ($getdetails['Email']) {
+                        $detail_user = '<a class="text-primary" href="mailto:' . $getdetails['Email'] . '?SUBJECT=' . $post->getTitle() . '">' . $getdetails['Username'] . '</a>';
+                    } else {
+                        $detail_user = $getdetails['Username'];
+                    }
+                    ?>
+
+                    <div class="clearfix"></div>
+                    <div class="blog-post">
+                        <h3 class="blog-post-title">
+                            <small><?php echo $post->getTitle(); ?></small>
+                        </h3>
+                        <p1 class="blog-post-meta text-primary-small"><?php echo $postdate; ?>
+                            by <?php echo $detail_user; ?> <?php echo $posttime; ?></p1>
+                        <div class="blog-post-message"><?php echo $post->getMessage(); ?></div>
+                    </div><!-- /.blog-post -->
+
+
                 <?php endforeach; ?>
-              
-                <?php echo $this->paginationControl($view->paginator, 'Sliding',  array('/scripts/pagination.phtml', 'blogger'), array('route' => 'blogger', 'action'=>'view') ); ?>
-                
-                </div>
-			</div>
+
+                <?php echo $this->paginationControl($view->paginator, 'Sliding', array('/scripts/pagination.phtml', 'blogger'), array('route' => 'blogger', 'action' => 'view')); ?>
+
+            </div>
+        </div>
 
 
-
-           </div>
-	</div>
+    </div>
+    </div>
 </header>    
 
 
