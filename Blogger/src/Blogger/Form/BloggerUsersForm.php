@@ -1,12 +1,18 @@
 <?php
-
 namespace Blogger\Form;
 
 use Zend\Form\Form;
 
+/**
+ * Class BloggerUsersForm
+ * @package Blogger\Form
+ */
 class BloggerUsersForm extends Form
 {
-
+    /**
+     * BloggerUsersForm constructor.
+     * @param null $name
+     */
     public function __construct($name = null)
     {
         parent::__construct('blogger-author');

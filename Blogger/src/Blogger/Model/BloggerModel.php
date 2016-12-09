@@ -7,6 +7,10 @@ use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 
+/**
+ * Class BloggerModel
+ * @package Blogger\Model
+ */
 class BloggerModel implements InputFilterAwareInterface
 {
     public $id;
@@ -17,6 +21,9 @@ class BloggerModel implements InputFilterAwareInterface
     public $message;
     protected $inputFilter;                       // <-- Add this variable
 
+    /**
+     * @param $data
+     */
     public function exchangeArray($data)
     {
         $this->id = (isset($data['id'])) ? $data['id'] : null;
@@ -28,11 +35,17 @@ class BloggerModel implements InputFilterAwareInterface
     }
 
     // Add content to these methods:
+    /**
+     * @param InputFilterInterface $inputFilter
+     */
     public function setInputFilter(InputFilterInterface $inputFilter)
     {
         // throw new \Exception("Not used");
     }
 
+    /**
+     * @return InputFilter
+     */
     public function getInputFilter()
     {
         if (!$this->inputFilter) {
@@ -95,6 +108,4 @@ class BloggerModel implements InputFilterAwareInterface
 
         return $this->inputFilter;
     }
-
-
 }

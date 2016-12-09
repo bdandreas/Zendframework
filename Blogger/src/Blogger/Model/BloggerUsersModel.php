@@ -14,6 +14,9 @@ class BloggerUsersModel implements InputFilterAwareInterface
     public $email;
     protected $inputFilter;                       // <-- Add this variable
 
+    /**
+     * @param $data
+     */
     public function exchangeArray($data)
     {
         $this->id = (isset($data['id'])) ? $data['id'] : null;

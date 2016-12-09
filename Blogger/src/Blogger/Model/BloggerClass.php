@@ -9,7 +9,10 @@ use Zend\ServiceManager\AbstractPluginManager;
 use Zend\Db\Adapter\AdapterInterface;
 use Zend\Db\Adapter\Adapter;
 
-
+/**
+ * Class BloggerClass
+ * @package Blogger\Model
+ */
 class BloggerClass extends AbstractPluginManager
 {
 
@@ -18,6 +21,10 @@ class BloggerClass extends AbstractPluginManager
 
     const preview = 5;
 
+    /**
+     * BloggerClass constructor.
+     * @param AdapterInterface $dbAdapter
+     */
     public function __construct(AdapterInterface $dbAdapter)
     {
         $this->adapter = $dbAdapter;
@@ -31,14 +38,11 @@ class BloggerClass extends AbstractPluginManager
     {
 
         if (isset($postid)) {
-
             $sql = 'SELECT id,userid,title,message,control,created  FROM blogger_post  WHERE id = ' . $postid . ' LIMIT 1 ';
         } else {
 
             $sql = 'SELECT id,userid,title,message,control,created  FROM blogger_post  ORDER BY created DESC LIMIT  ' . self::preview;
-
         }
-
         $dbAdapter = $this->adapter;
         $statement = $dbAdapter->query($sql);
         $result = $statement->execute();

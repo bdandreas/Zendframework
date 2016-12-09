@@ -1,5 +1,4 @@
 <?php
-
 namespace Blogger\Model;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
@@ -7,16 +6,30 @@ use Zend\Db\Sql\Select;
 use Zend\Paginator\Adapter\DbSelect;
 use Zend\Paginator\Paginator;
 
+/**
+ * Class BloggerTable
+ * @package Blogger\Model
+ */
 class BloggerTable
 {
+    /**
+     * @var TableGateway
+     */
     protected $tableGateway;
 
+    /**
+     * BloggerTable constructor.
+     * @param TableGateway $tableGateway
+     */
     public function __construct(TableGateway $tableGateway)
     {
         $this->tableGateway = $tableGateway;
     }
 
-
+    /**
+     * @param bool $paginated
+     * @return Paginator
+     */
     public function fetchAll($paginated = false)
     {
         if ($paginated) {
@@ -51,6 +64,9 @@ class BloggerTable
         return $resultSet;
     }
 
+    /**
+     * @param $id
+     */
     public function deleteContact($id)
     {
         $this->tableGateway->delete(array('id' => (int)$id));

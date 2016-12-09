@@ -199,12 +199,19 @@ class BloggerController extends AbstractActionController
         return $adapter;
     }
 
+    /**
+     * @param EntityManager $em
+     * @return $this
+     */
     protected function setEntityManager(EntityManager $em)
     {
         $this->entityManager = $em;
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     protected function getEntityManager()
     {
         if (null === $this->entityManager) {
@@ -213,6 +220,9 @@ class BloggerController extends AbstractActionController
         return $this->entityManager;
     }
 
+    /**
+     * @return mixed
+     */
     public function getBloggerTable()
     {
         if (!$this->bloggerTable) {

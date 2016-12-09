@@ -6,6 +6,9 @@ use Doctrine\ORM\EntityRepository;
 
 class BloggerUsersRepository extends EntityRepository
 {
+    /**
+     * @return mixed
+     */
     public function getName()
     {
         $querybuilder = $this->_em

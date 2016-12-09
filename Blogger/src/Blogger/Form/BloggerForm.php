@@ -6,14 +6,22 @@ use Zend\Form\Form;
 use Zend\Db\Adapter\AdapterInterface;
 use Zend\Db\Adapter\Adapter;
 
+/**
+ * Class BloggerForm
+ * @package Blogger\Form
+ */
 class BloggerForm extends Form
 {
 
     protected $adapter;
 
+    /**
+     * BloggerForm constructor.
+     * @param AdapterInterface $dbAdapter
+     * @param bool $userid
+     */
     public function __construct(AdapterInterface $dbAdapter, $userid = false)
     {
-
         $this->adapter = $dbAdapter;
         parent::__construct('blogger');
 
@@ -63,6 +71,10 @@ class BloggerForm extends Form
 
     }
 
+    /**
+     * @param bool $userid
+     * @return array
+     */
     public function getOptionsForSelect($userid = false)
     {
         $dbAdapter = $this->adapter;
@@ -80,11 +92,8 @@ class BloggerForm extends Form
         foreach ($result as $res) {
             $selectData[$res['id']] = $res['name'];
         }
-
         return $selectData;
-
     }
-
 }
  
  
