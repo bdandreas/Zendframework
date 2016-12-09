@@ -1,24 +1,38 @@
 <?php
-
 namespace Converterapp\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 
+/**
+ * Class WebservicexTable
+ * @package Converterapp\Model
+ */
 class WebservicexTable
 {
     protected $tableGateway;
 
+    /**
+     * WebservicexTable constructor.
+     * @param TableGateway $tableGateway
+     */
     public function __construct(TableGateway $tableGateway)
     {
         $this->tableGateway = $tableGateway;
     }
 
+    /**
+     * @return mixed
+     */
     public function fetchAll()
     {
         $resultSet = $this->tableGateway->select();
         return $resultSet;
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getContact($id)
     {
         $id = (int)$id;
@@ -30,6 +44,9 @@ class WebservicexTable
         return $row;
     }
 
+    /**
+     * @param Contact $contact
+     */
     public function saveContact(Contact $contact)
     {
         $data = array(
@@ -51,6 +68,9 @@ class WebservicexTable
         }
     }
 
+    /**
+     * @param $id
+     */
     public function deleteContact($id)
     {
         $this->tableGateway->delete(array('id' => (int)$id));

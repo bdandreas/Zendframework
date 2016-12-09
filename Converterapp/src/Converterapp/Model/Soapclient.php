@@ -19,9 +19,17 @@ require_once "Zend/Soap/Server.php";
 require_once "Zend/Soap/AutoDiscover.php";
 require_once "Zend/Soap/Client.php";
 
+/**
+ * Class Soapclient
+ * @package Converterapp\Model
+ */
 Class Soapclient
 {
-
+    /**
+     * @param bool $client
+     * @param bool $array
+     * @return mixed
+     */
     Public Function Webservicex_SOAP_ConversionRate($client = false, $array = false)
     {
         try {
@@ -33,7 +41,11 @@ Class Soapclient
         return $result;
     }
 
-
+    /**
+     * @param bool $client
+     * @param bool $array
+     * @return mixed
+     */
     Public function Kowabunga_SOAP_GetCurrencies($client = false, $array = false)
     {
         try {
@@ -46,6 +58,11 @@ Class Soapclient
         return $result;
     }
 
+    /**
+     * @param bool $client
+     * @param bool $array
+     * @return mixed
+     */
     Public function Kowabunga_SOAP_GetLastUpdateDate($client = false, $array = false)
     {
         try {
@@ -58,6 +75,11 @@ Class Soapclient
         return $result;
     }
 
+    /**
+     * @param bool $client
+     * @param bool $array
+     * @return mixed
+     */
     Public function Kowabunga_SOAP_GetConversionRate($client = false, $array = false)
     {
         try {
@@ -70,6 +92,11 @@ Class Soapclient
        return $result;
     }
 
+    /**
+     * @param bool $client
+     * @param bool $array
+     * @return mixed
+     */
     Public function Kowabunga_SOAP_GetConversionAmount($client = false, $array = false)
     {
         try {
@@ -82,6 +109,11 @@ Class Soapclient
         return $result;
     }
 
+    /**
+     * @param bool $uri
+     * @param bool $options
+     * @return Client
+     */
     Public Function Soap_Connect($uri = false, $options = false)
     {
         ini_set("soap.wsdl_cache_enabled", 0);
@@ -98,6 +130,10 @@ Class Soapclient
         return $client;
     }
 
+    /**
+     * @param $string
+     * @return string
+     */
     Public Function url_decode($string)
     {
         return utf8_decode(urldecode($string));

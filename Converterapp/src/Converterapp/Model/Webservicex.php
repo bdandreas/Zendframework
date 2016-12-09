@@ -21,6 +21,9 @@ class Webservicex implements InputFilterAwareInterface
     public $tocurrency;
     protected $inputFilter;                       // <-- Add this variable
 
+    /**
+     * @param $data
+     */
     public function exchangeArray($data)
     {
         $this->fromcurrency = (isset($data['fromcurrency'])) ? $data['fromcurrency'] : null;
@@ -28,11 +31,16 @@ class Webservicex implements InputFilterAwareInterface
 
     }
 
-    // Add content to these methods:
+    /**
+     * @param InputFilterInterface $inputFilter
+     */
     public function setInputFilter(InputFilterInterface $inputFilter)
     {
     }
 
+    /**
+     * @return InputFilter
+     */
     public function getInputFilter()
     {
         if (!$this->inputFilter) {

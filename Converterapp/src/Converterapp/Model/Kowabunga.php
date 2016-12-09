@@ -13,7 +13,10 @@ use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 
-
+/**
+ * Class Kowabunga
+ * @package Converterapp\Model
+ */
 class Kowabunga implements InputFilterAwareInterface
 {
 
@@ -23,6 +26,9 @@ class Kowabunga implements InputFilterAwareInterface
     public $amount;
     protected $inputFilter;                       // <-- Add this variable
 
+    /**
+     * @param $data
+     */
     public function exchangeArray($data)
     {
         $this->fromcurrency = (isset($data['fromcurrency'])) ? $data['fromcurrency'] : null;
@@ -38,6 +44,9 @@ class Kowabunga implements InputFilterAwareInterface
         //throw new (\Exception("Not used");
     }
 
+    /**
+     * @return InputFilter
+     */
     public function getInputFilter()
     {
         if (!$this->inputFilter) {
@@ -112,8 +121,6 @@ class Kowabunga implements InputFilterAwareInterface
                     ),
                 ),
             ));
-
-
             $this->inputFilter = $inputFilter;
         }
 

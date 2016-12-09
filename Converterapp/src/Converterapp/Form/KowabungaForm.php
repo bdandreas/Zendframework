@@ -5,8 +5,16 @@ namespace Converterapp\Form;
 use Zend\Form\Element;
 use Zend\Form\Form;
 
+/**
+ * Class KowabungaForm
+ * @package Converterapp\Form
+ */
 class KowabungaForm extends Form
 {
+    /**
+     * KowabungaForm constructor.
+     * @param null $name
+     */
     public function __construct($name = null)
     {
         parent::__construct('kowabunga');

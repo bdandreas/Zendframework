@@ -19,7 +19,10 @@ use Converterapp\Model\Webservicex;
 use Converterapp\Form\WebservicexForm;
 use Converterapp\Model\Soapclient;
 
-
+/**
+ * Class WebservicexController
+ * @package Converterapp\Controller
+ */
 class WebservicexController extends AbstractActionController
 {
     private $user;
